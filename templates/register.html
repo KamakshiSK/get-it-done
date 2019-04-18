@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Register to Get It Done!</h1>
+<form action="/register" method="post">
+    <table>
+        {% with email_messages = get_flashed_messages(category_filter=['email_error']) %}
+        {% with password_messages = get_flashed_messages(category_filter=['password_error']) %}
+        {% with verify_messages = get_flashed_messages(category_filter=['verify_password_error']) %}
+
+        <tr>
+            <td><label for="email">Email</label></td>
+            <td>
+                <input name="email" type="email" value="{{ email }}">
+            </td>
+            <td><label class = "error">{{email_messages[0]}}</label></td>
+        </tr>
+        <tr>
+            <td><label for="password">Password</label></td>
+            <td>
+                <input name="password" type="password">
+            </td>
+            <td><label class = "error">{{password_messages[0]}}</label></td>
+
+        </tr>
+        <tr>
+            <td><label for="verify">Verify Password</label></td>
+            <td>
+                <input name="verify" type="password">
+            </td>
+            <td><label class = "error">{{verify_messages[0]}}</label></td>
+        </tr>
+        {% endwith %}
+        {% endwith %}
+        {% endwith %}
+
+    </table>
+    <input type="submit" value="Register">
+</form>
+
+{% endblock %}

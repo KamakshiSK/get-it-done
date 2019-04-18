@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Log in to Get It Done!</h1>
+<p>If you don't have an account, you may <a href="/register">register</a> for one</p>
+<form action="/login" method="post">
+    {% with email_messages = get_flashed_messages(category_filter =['error_email']) %}
+    {% with password_messages = get_flashed_messages(category_filter=['error_password'])%}
+    <table>
+        <tr>
+            <td><label for="email">Email</label></td>
+            <td>
+                <input name="email" type="email" value="{{ email }}">
+            </td>
+            <td><label class = 'error'>{{email_messages[0]}}</label></td>
+        </tr>
+        <tr>
+            <td><label for="password">Password</label></td>
+            <td>
+                <input name="password" type="password">
+            </td>
+            <td><label class = 'error'>{{password_messages[0]}}</label></td>
+
+        </tr>
+    </table>
+    {% endwith %}
+    {% endwith %}
+
+    <input type="submit" value="Login">
+</form>
+
+{% endblock %}
